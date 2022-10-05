@@ -1,0 +1,133 @@
+<!-- partial -->
+<%- include('../template/header') %>
+<div class="content-wrapper">
+  <div class="container">
+    <!-- all news section -->
+    <div class="row" data-aos="fade-up">
+      <div class="col stretch-card grid-margin">
+        <div class="card">
+          <div class="card-body">    
+            <!-- modification content with if-->
+            <div class="row d-flex align-items-center justify-content-center">
+              <div class="col-sm-3 grid-margin">
+                <div class="position-relative">
+                  <div class="rotate-img">
+                    <% if (data_detail.image==null) {%>
+                    <img
+                      src="images/dashboard/home_4.jpg"
+                      alt="thumb"
+                      class="img-fluid"
+                    />
+                    <% } else { %>
+                      <img
+                      src="../uploads/<%= data_detail.image %>"
+                      alt="thumb"
+                      class="img-fluid"
+                    />
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex align-items-center justify-content-center">
+              <div class="col-sm-8 grid-margin">
+                <h2 class="mb-2 font-weight-600">
+                  <%= data_detail.title %>
+                </h2>
+                <div class="fs-13 mb-2">
+                  <span class="mr-2">Photo </span>10 Minutes ago
+                </div>
+                <p class="mb-0">
+                 <%= data_detail.news_content %>
+                </p>
+              </div>
+            </div>
+            <div class="row d-flex align-items-center justify-content-center ">
+              <a href="/edit_news/<%= data_detail.id_news %>" class="btn btn-info">Edit</a>&nbsp;
+              <a href="/delete_news/<%= data_detail.id_news %>" class="btn btn-danger">Delete</a>
+            </div>
+            <!-- end modification content with if-->
+            <!-- end of content -->
+          </div>
+        </div>
+      </div>
+      <!-- comment -->
+      <div class="content-wrapper" style="padding-top: 20px;">
+        <div class="container">
+          <div class="col-sm-12">
+            <div class="card" data-aos="fade-up">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h1 class="font-weight-600 mb-4">
+                      Comment
+                    </h1>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div class="row">
+                      <div class="col-sm-8 grid-margin">
+                        <h3 class="font-weight-600 mb-2">
+                          Username
+                        </h2>
+                        <p class="fs-13 text-muted mb-0">
+                          <span class="mr-2">Comment </span>10 Minutes ago
+                        </p>
+                        <p class="fs-15">
+                          Lorem Ipsum has been the industry's standard dummy
+                          text ever since the 1500s, when an unknown printer
+                          took a galley of type and scrambled it to make a
+                          type specimen book.
+                        </p>
+                      </div>
+                    </div>
+                  <% commentss.forEach(comments => { %>
+                    <div class="row">
+                      <div class="col-sm-8 grid-margin">
+                        <h3 class="font-weight-600 mb-2">
+                          <%=comments.name%>
+                        </h2>
+                        <p class="fs-13 text-muted mb-0">
+                          <span class="mr-2">Comment </span>10 Minutes ago
+                        </p>
+                        <p class="fs-15">
+                          <%=comments.comment%>
+                        </p>
+                      </div>
+                    </div>
+                  <% }) %>
+                    
+
+                    <form action="/news_detail/addcomment" method="post">
+                      <div class="mb-3">
+                        <input type="hidden" name="id_news" value="<%= data_detail.id_news %>">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" name="name" id="name" autofocus required>
+                      </div>
+                      <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea
+                          class="form-control"
+                          id="comment"
+                          name="comment"
+                          rows="3"
+                          required
+                        ></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<!-- main-panel ends -->
+<!-- container-scroller ends -->
+<%- include('../template/footer') %>

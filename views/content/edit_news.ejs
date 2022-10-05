@@ -1,0 +1,30 @@
+<%- include('../template/header') %>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="col card grid-margin">
+            <form action="/edit_news/<%= data.id_news %> " method="POST" enctype="multipart/form-data">
+                <h1 class="d-flex align-items-center justify-content-center mt-2">Edit News</h2>
+                <div class="mb-3">
+                  <label for="title" class="form-label">News Title</label>
+                  <input type="text" class="form-control" 
+                  name="title" id="title"
+                  value="<%= data.title %>" 
+                  autofocus required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" 
+                    name="image" id ="image" 
+                    <%= data.image %> 
+                    accept="image/png, image/jpeg, image/jpg">
+                </div>
+                <div class="mb-3">
+                  <label for="content" class="form-label">News Content</label>
+                  <textarea id="content" name="content" class="form-control" rows="4" cols="50" required><%= data.news_content %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../template/footer') %>
